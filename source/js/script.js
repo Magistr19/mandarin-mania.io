@@ -20,12 +20,13 @@ function toggleModal(evt) {
 }
 
 // Mobile nav js
-let navBtn = document.querySelector('.nav-btn');
+let navBtn = document.querySelector('.page-header__nav-btn');
 let mainNav = document.querySelector('.main-nav');
 
-navBtn.addEventListener('click', function(evt) {
-  evt.preventDefault;
+navBtn.addEventListener('click', toggleNav);
+mainNav.addEventListener('click', toggleNav);
 
-  navBtn.classList.toggle('nav-btn--opened');
-  mainNav.classList.toggle('main-nav--show');
-});
+function toggleNav(evt) {
+    navBtn.classList.toggle('page-header__nav-btn--opened');
+    mainNav.classList.toggle('main-nav--show');
+}
