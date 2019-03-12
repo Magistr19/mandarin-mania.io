@@ -1,0 +1,43 @@
+@media (max-width: $mobile-size-max) {
+  .main-nav {
+    display: none;
+  }
+
+  .main-nav--show {
+    display: block;
+  }
+
+  .main-nav__list {
+    @include list-reset;
+  }
+
+  .main-nav__item {
+    a {
+      display: block;
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      font-size: 21px;
+      line-height: 30px;
+      text-align: center;
+      color: #ffff00;
+      text-decoration: none;
+
+      background-color: $orange;
+      border-top: 1px solid $grey;
+      border-bottom: 1px solid $black;
+
+      transition: opacity 0.3s ease-in;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        opacity: 0.8;
+      }
+
+      &:active {
+        opacity: 0.6;
+      }
+    }
+  }
+}
