@@ -86,6 +86,24 @@
 }
 
 @media (min-width: $tablet-size) {
+  .page-header {
+    background-color: #98cb31;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: $tablet-gap;
+    padding-right: $tablet-gap;
+  }
+
+  .page-header__container {
+    margin-right: 7%;
+  }
+
+  .page-header__logo-text {
+    display: none;
+  }
+
   .page-header__nav-btn {
     display: none;
   }
