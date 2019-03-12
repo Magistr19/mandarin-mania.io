@@ -1,0 +1,28 @@
+.custom-btn {
+  display: block;
+  width: 250px;
+  height: 44px;
+	padding: 0;
+	font-weight: 700;
+
+  font-size: 23px;
+  color: $white;
+
+  background: linear-gradient( 90deg, rgb(231,74,53) 0%, rgb(242,104,67) 100%);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 1px 2px 0 rgba(172, 16, 0, 0.7);
+
+	transition: all 0.3s ease-in;
+
+	&:hover,
+	&:focus {
+		background: linear-gradient(to bottom, rgb(245,134,105), rgb(236,111,94));
+		outline: none;
+	}
+
+	&:active {
+		background: linear-gradient( 90deg, rgb(242,104,67) 0%, rgb(231,74,53) 100%);
+		box-shadow: inset 0px 2px 2px 0px rgba(148, 39, 24, 1);
+	}
+}

@@ -1,0 +1,90 @@
+.modal-register {
+  position: fixed;
+  top: calc(50% - 138px);
+  left: calc(50% - 160px);
+  z-index: 1;
+
+  width: 320px;
+  height: 276px;
+
+  background-color: $white;
+  display: none;
+}
+
+.modal-register--show {
+  display: block;
+}
+
+.modal-register__form {
+  padding-right: $mobile-gap;
+  padding-left: $mobile-gap;
+}
+
+.modal-register__info {
+  @include p-reset;
+
+  padding-bottom: 24px;
+  padding-top: 24px;
+  font-size: 24px;
+}
+
+.modal-register__nick-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.modal-register__send-btn {
+  margin-top: 35px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.modal-register__close-btn {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  background-color: #c91717;
+  border: none;
+  border-radius: 50%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: calc(50% - 1px);
+
+    width: 25px;
+    height: 3px;
+
+    background-color: $white;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: calc(50% - 1px);
+
+    width: 25px;
+    height: 3px;
+
+    background-color: $white;
+    transform: rotate(-45deg);
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}

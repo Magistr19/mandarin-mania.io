@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mandarin-mania.io</title>
+  <link rel="preload" href="scc/style.min.css" as="style">
+  <link rel="preload" href="fonts/pt-sans-narrow-v8-latin_cyrillic-regular.woff2" as="font" type="font/woff2">
+  <link rel="preload" href="fonts/pt-sans-narrow-v8-latin_cyrillic-700.woff2" as="font" type="font/woff2">
+  <link rel="stylesheet" type="text/css" href="css/style.min.css">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+</head>
+<body>
+  <section class="modal-register">
+    <h2 class="screen-reader">Регистрация</h2>
+    <form class="modal-register__form" action="#" method="post">
+			<p class="modal-register__info">В первый раз играете?</p>
+      <label class="modal-register__nick-label" for="loginNickname">Введите ваш никнейм: </label>
+      <input class="custom-input" type="text" placeholder="Fruit ninja" id="loginNickname">
+      <button class="custom-btn modal-register__send-btn">Начать игру</button>
+      <button class="modal-register__close-btn" type="button"><span class="screen-reader">Закрыть модальное окно</span></button>
+    </form>
+  </section>
+  <div class="overlay"></div>
+  <header class="page-header">
+    <div class="page-header__logo">
+      <picture>
+        <source media="(min-width: 1200px)" srcset="img/mandarin-mania-header-logo-mobile.png">
+        <source media="(min-width: 768px)" srcset="img/mandarin-mania-header-logo-tablet.png">
+        <img src="img/mandarin-mania-header-logo-mobile.png" alt="Логотип">
+      </picture>
+    </div>
+    <nav class="page-header__nav">
+      <ul class="page-header__nav-list">
+        <li class="page-header__nav-item"><a href="#game">Играть</a></li>
+        <li class="page-header__nav-item"><a href="#records">Таблица рекордов</a></li>
+        <li class="page-header__nav-item"><a href="#info">Правила игры</a></li>
+        <li class="page-header__nav-item"><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="index-main">
+    <h1 class="headline">Mandarin-mania</h1>
+    <section id="game">
+      <div class="game__field">
+        <button class="game__start-btn">Начать игру</button>
+        <img src="img/mandarin.svg" alt="Мандарин">
+        <img src="img/lemon.svg" alt="Лемон">
+        <span class="game__self-record">Ваш лучший результат: 0</span>
+      </div>
+      <ul class="game__levels">
+        <li><button class="custom-btn-2 custom-btn-2--disabled">1</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">2</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">3</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">4</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">5</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">6</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">7</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">8</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">9</button></li>
+        <li><button class="custom-btn-2 custom-btn-2--disabled">10</button></li>
+      </ul>
+    </section>
+    <section class="records" id="records">
+        <h2 class="section-title">Лучшие результаты:</h2>
+        <table class="records__table">
+          <tr>
+            <th>№</th>
+            <th>Ник</th>
+            <th>Дата</th>
+            <th>Счет</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Igor</td>
+            <td>08.03.19</td>
+            <td>120</td>
+          </tr>
+        </table>
+    </section>
+    <section class="info" id="info">
+      <h2 class="section-title">Правила игры:</h2>
+      <p class="info__description">
+
+      </p>
+    </section>
+  </main>
+  <footer class="page-footer">
+    <div class="page-footer__address"></div>
+    <div class="page-footer__contacts" id="contacts"></div>
+    <div class="page-footer__copyright"></div>
+  </footer>
+
+	<script src="js/script.min.js"></script>
+</body>
+</html>

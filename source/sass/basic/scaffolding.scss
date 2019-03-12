@@ -1,0 +1,47 @@
+@font-face {
+  font-weight: 400;
+  font-family: "PT Sans Narrow";
+  font-style: normal;
+
+  font-display: swap;
+  src: local("PT Sans Narrow"), local("PTSans-Narrow"),
+  url("../fonts/pt-sans-narrow-v8-latin_cyrillic-regular.woff2") format("woff2"),
+  url("../fonts/pt-sans-narrow-v8-latin_cyrillic-regular.woff") format("woff");
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: "PT Sans Narrow";
+  font-style: normal;
+
+  font-display: swap;
+  src: local("PT Sans Narrow Bold"), local("PTSans-NarrowBold"),
+  url("../fonts/pt-sans-narrow-v8-latin_cyrillic-700.woff2") format("woff2"),
+  url("../fonts/pt-sans-narrow-v8-latin_cyrillic-700.woff") format("woff");
+}
+
+.screen-reader {
+  position: absolute !important;
+
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden;
+
+  border: 0 !important;
+
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+body {
+  min-width: $mobile-size;
+  margin: 0;
+  padding: 0;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  font-family: "PT Sans Narrow", "Arial", sans-serif;
+  font-style: normal;
+}

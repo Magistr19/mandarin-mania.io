@@ -1,0 +1,42 @@
+﻿@mixin list-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  list-style: none;
+}
+
+@mixin h-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@mixin p-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@mixin table-reset {
+  td {
+    padding: 0;
+  }
+}
+
+@mixin dl-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  dd {
+    margin-left: 0;
+  }
+}
+
+@mixin input-reset {
+  padding: 0;
+}
+
+@mixin fieldset-reset {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+}
