@@ -24,28 +24,30 @@
   </section>
   <div class="overlay"></div>
   <header class="page-header">
-    <div class="page-header__container">
-      <div class="page-header__logo">
-        <picture>
-          <source media="(min-width: 1200px)" srcset="img/mandarin-mania-header-logo-mobile.png">
-          <source media="(min-width: 768px)" srcset="img/mandarin-mania-header-logo-tablet.png">
-          <source media="(min-width: 320px)" srcset="img/mandarin-mania-header-logo-mobile.png">
-          <img src="img/mandarin-mania-header-logo-mobile.png" alt="Логотип">
-        </picture>
+    <div class="page-header__wrapper">
+      <div class="page-header__container">
+        <div class="page-header__logo">
+          <picture>
+            <source media="(min-width: 1200px)" srcset="img/mandarin-mania-header-logo-desktop.png">
+            <source media="(min-width: 768px)" srcset="img/mandarin-mania-header-logo-tablet.png">
+            <source media="(min-width: 320px)" srcset="img/mandarin-mania-header-logo-mobile.png">
+            <img src="img/mandarin-mania-header-logo-mobile.png" alt="Логотип">
+          </picture>
+        </div>
+        <div class="page-header__logo-text">
+          <img src="img/mandarin-mania-header-logo-text.png" alt="Mandarin Mania">
+        </div>
+        <button class="page-header__nav-btn page-header__nav-btn--show"><span class="screen-reader">Открыть навигацию</span></button>
       </div>
-      <div class="page-header__logo-text">
-        <img src="img/mandarin-mania-header-logo-text.png" alt="Mandarin Mania">
-      </div>
-      <button class="page-header__nav-btn page-header__nav-btn--show"><span class="screen-reader">Открыть навигацию</span></button>
+      <nav class="main-nav page-header__nav">
+        <ul class="main-nav__list">
+          <li class="main-nav__item"><a href="#game">Играть</a></li>
+          <li class="main-nav__item"><a href="#records">Таблица рекордов</a></li>
+          <li class="main-nav__item"><a href="#info">Правила игры</a></li>
+          <li class="main-nav__item"><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav class="main-nav page-header__nav">
-      <ul class="main-nav__list">
-        <li class="main-nav__item"><a href="#game">Играть</a></li>
-        <li class="main-nav__item"><a href="#records">Таблица рекордов</a></li>
-        <li class="main-nav__item"><a href="#info">Правила игры</a></li>
-        <li class="main-nav__item"><a href="#contacts">Контакты</a></li>
-      </ul>
-    </nav>
   </header>
   <main class="index-main">
     <h1 class="headline">Mandarin-mania</h1>

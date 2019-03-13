@@ -88,12 +88,15 @@
 @media (min-width: $tablet-size) {
   .page-header {
     background-color: #98cb31;
-    display: flex;
-    justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: $tablet-gap;
     padding-right: $tablet-gap;
+  }
+
+  .page-header__wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 
   .page-header__container {
@@ -106,6 +109,22 @@
 
   .page-header__nav-btn {
     display: none;
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .page-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .page-header__wrapper {
+    width: $desktop-size;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: $desktop-gap;
+    padding-right: $desktop-gap;
   }
 }
 

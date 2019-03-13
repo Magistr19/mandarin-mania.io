@@ -46,6 +46,8 @@
   .main-nav {
     display: flex;
     flex-grow: 1;
+    max-width: 600px;
+    margin-top: -2px;
   }
 
   .main-nav__list {
@@ -54,7 +56,6 @@
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-    margin-top: -2px;
   }
 
   .main-nav__item {
@@ -74,6 +75,21 @@
       &:active {
         color: darken($yellow, 15);
       }
+    }
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .main-nav {
+    width: 500px;
+    margin-top: 0;
+  }
+
+  .main-nav__item {
+    a {
+      font-size: 26px;
+      line-height: 33px;
+      text-transform: uppercase;
     }
   }
 }
