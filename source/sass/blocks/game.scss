@@ -1,0 +1,21 @@
+.game__field {
+  display: flex;
+  flex-grow: 1;
+  max-width: 500px;
+  background-color: $orange;
+  background-image: url('../img/game-field-bg.jpg');
+  background-repeat: round;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game__field--gaming {
+  background-image: url('../img/game-field-bg-gaming.png');
+  background-color: $orange;
+  background-size: 25px;
+}
+
+.game__start-btn {
+  margin: auto;
+}

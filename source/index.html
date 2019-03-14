@@ -12,6 +12,7 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
+
   <section class="modal-register">
     <h2 class="screen-reader">Регистрация</h2>
     <form class="modal-register__form" action="#" method="post">
@@ -23,6 +24,7 @@
     </form>
   </section>
   <div class="overlay"></div>
+
   <header class="page-header">
     <div class="page-header__wrapper">
       <div class="page-header__container">
@@ -49,14 +51,48 @@
       </nav>
     </div>
   </header>
+
   <main class="index-main">
-    <h1 class="headline">Mandarin-mania</h1>
-    <section id="game">
-      <div class="game__field">
-        <button class="game__start-btn">Начать игру</button>
-        <img src="img/mandarin.svg" alt="Мандарин">
+    <h1 class="headline">Mandarin-mania.io</h1>
+
+    <section class="game" id="game">
+      <div class="game__field game__field--gaming"> <!-- game__field--gaming -->
+        <!-- <button class="custom-btn custom-btn--big game__start-btn">Начать игру</button> -->
+        <div class="game-options game__options">
+          <p class="game-options__fruits-desc">Выберите фрукты, которыми хотите играть: </p>
+          <ul class="game-options__fruits-list">
+            <li class="custom-checkbox game-options__fruits-item">
+              <input type="checkbox" name="orange-option" id="orange-option">
+              <label for="orange-option">Мандарин</label>
+            </li>
+            <li class="custom-checkbox game-options__fruits-item">
+              <input type="checkbox" name="orange-option" id="orange-option">
+              <label for="orange-option">Лемон</label>
+            </li>
+            <li class="custom-checkbox game-options__fruits-item">
+              <input type="checkbox" name="orange-option" id="orange-option">
+              <label for="orange-option">Апельсин</label>
+            </li>
+          </ul>
+          <p class="game-options__difficult-desc">Выберите сложность, на которой хотите играть:</p>
+          <ul class="game-options__difficult-list">
+            <li class="game-options__difficult-item">
+              <input type="radio" id="hard-option" name="difficult-option">
+              <label for="hard-option" id="hard-option">Легкий</label>
+            </li>
+            <li class="game-options__difficult-item">
+              <input type="radio" id="hard-option" name="difficult-option">
+              <label for="hard-option" id="hard-option">Средний</label>
+            </li>
+            <li class="game-options__difficult-item">
+              <input type="radio" id="hard-option" name="difficult-option">
+              <label for="hard-option" id="hard-option">Сложный</label>
+            </li>
+          </ul>
+        </div>
+        <!-- <img src="img/mandarin.svg" alt="Мандарин">
         <img src="img/lemon.svg" alt="Лемон">
-        <span class="game__self-record">Ваш лучший результат: 0</span>
+        <span class="game__self-record">Ваш лучший результат: 0</span> -->
       </div>
       <ul class="game__levels">
         <li><button class="custom-btn-2 custom-btn-2--disabled">1</button></li>
@@ -71,6 +107,7 @@
         <li><button class="custom-btn-2 custom-btn-2--disabled">10</button></li>
       </ul>
     </section>
+
     <section class="records" id="records">
         <h2 class="section-title">Лучшие результаты:</h2>
         <table class="records__table">
@@ -142,13 +179,16 @@
           </tr>
         </table>
     </section>
+
     <section class="info" id="info">
       <h2 class="section-title">Правила игры:</h2>
       <p class="info__description">
 
       </p>
     </section>
+
   </main>
+
   <footer class="page-footer">
     <div class="page-footer__address"></div>
     <div class="page-footer__contacts" id="contacts"></div>
