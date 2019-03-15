@@ -61,37 +61,41 @@
         <div class="game-options game__options">
           <p class="game-options__fruits-desc">Выберите фрукты, которыми хотите играть: </p>
           <ul class="game-options__fruits-list">
-            <li class="custom-checkbox game-options__fruits-item">
-              <input type="checkbox" name="orange-option" id="orange-option">
+            <li class="game-options__fruits-item">
+							<img src="img/mandarin.svg" alt="Мандарин" width="35" height="35">
+              <input type="checkbox" name="orange-option" id="orange-option" checked>
               <label for="orange-option">Мандарин</label>
             </li>
-            <li class="custom-checkbox game-options__fruits-item">
-              <input type="checkbox" name="orange-option" id="orange-option">
-              <label for="orange-option">Лемон</label>
+            <li class="game-options__fruits-item">
+							<img src="img/lemon.svg" alt="Лимон" width="35" height="35">
+              <input type="checkbox" name="lemon-option" id="lemon-option">
+              <label for="lemon-option">Лимон</label>
             </li>
-            <li class="custom-checkbox game-options__fruits-item">
-              <input type="checkbox" name="orange-option" id="orange-option">
-              <label for="orange-option">Апельсин</label>
+            <li class="game-options__fruits-item">
+							<img src="img/watermelon.svg" alt="Арбуз" width="35" height="35">
+              <input type="checkbox" name="watermelon-option" id="watermelon-option">
+              <label for="watermelon-option">Арбуз</label>
             </li>
           </ul>
-          <p class="game-options__difficult-desc">Выберите сложность, на которой хотите играть:</p>
+          <p class="game-options__difficult-desc">Выберите сложность игры:</p>
           <ul class="game-options__difficult-list">
             <li class="game-options__difficult-item">
-              <input type="radio" id="hard-option" name="difficult-option">
-              <label for="hard-option" id="hard-option">Легкий</label>
+              <input type="radio" id="easy-option" name="difficult-option" value="difficult-easy" checked>
+              <label for="easy-option">Легкий</label>
             </li>
             <li class="game-options__difficult-item">
-              <input type="radio" id="hard-option" name="difficult-option">
-              <label for="hard-option" id="hard-option">Средний</label>
+              <input type="radio" id="medium-option" name="difficult-option" value="difficult-medium">
+              <label for="medium-option">Средний</label>
             </li>
             <li class="game-options__difficult-item">
-              <input type="radio" id="hard-option" name="difficult-option">
-              <label for="hard-option" id="hard-option">Сложный</label>
+              <input type="radio" id="hard-option" name="difficult-option" value="difficult-hard">
+              <label for="hard-option">Сложный</label>
             </li>
           </ul>
+          <button class="custom-btn game-options__start-btn">Начать игру</button>
         </div>
         <!-- <img src="img/mandarin.svg" alt="Мандарин">
-        <img src="img/lemon.svg" alt="Лемон">
+        <img src="img/lemon.svg" alt="Лимон">
         <span class="game__self-record">Ваш лучший результат: 0</span> -->
       </div>
       <ul class="game__levels">

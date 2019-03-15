@@ -1,21 +1,29 @@
 .game__field {
   display: flex;
   flex-grow: 1;
-  max-width: 500px;
-  background-color: $orange;
-  background-image: url('../img/game-field-bg.jpg');
-  background-repeat: round;
+  max-width: 700px;
   height: 450px;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
+  padding-right: $mobile-gap;
+  padding-left: $mobile-gap;
+  box-sizing: border-box;
+
+  background-color: $orange;
+  background-image: url("../img/game-field-bg.jpg");
+  background-repeat: round;
 }
 
 .game__field--gaming {
-  background-image: url('../img/game-field-bg-gaming.png');
-  background-color: $orange;
+  background-color: #d11919;
+  background-image: url("../img/game-field-bg-gaming.png");
   background-size: 25px;
 }
 
 .game__start-btn {
+  margin: auto;
+}
+
+.game__options {
   margin: auto;
 }
