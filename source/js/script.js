@@ -1,6 +1,5 @@
 'use strict';
 
-
 // Play btn js
 // let playBtn = document.querySelector('.game__start-btn');
 // let overlay = document.querySelector('.overlay');

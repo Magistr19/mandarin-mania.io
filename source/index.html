@@ -55,71 +55,100 @@
   <main class="index-main">
     <h1 class="headline">Mandarin-mania.io</h1>
 
-    <section class="game" id="game">
-      <div class="game__field game__field--gaming"> <!-- game__field--gaming -->
-        <!-- <button class="custom-btn custom-btn--big game__start-btn">Начать игру</button> -->
-        <div class="game-options game__options">
-          <p class="game-options__fruits-desc">Выберите фрукты, которыми хотите играть: </p>
-          <ul class="game-options__fruits-list">
-            <li class="game-options__fruits-item">
-							<img src="img/mandarin.svg" alt="Мандарин" width="35" height="35">
-              <input type="checkbox" name="orange-option" id="orange-option" checked>
-              <label for="orange-option">Мандарин</label>
-            </li>
-            <li class="game-options__fruits-item">
-							<img src="img/lemon.svg" alt="Лимон" width="35" height="35">
-              <input type="checkbox" name="lemon-option" id="lemon-option">
-              <label for="lemon-option">Лимон</label>
-            </li>
-            <li class="game-options__fruits-item">
-							<img src="img/watermelon.svg" alt="Арбуз" width="35" height="35">
-              <input type="checkbox" name="watermelon-option" id="watermelon-option">
-              <label for="watermelon-option">Арбуз</label>
-            </li>
-          </ul>
-          <p class="game-options__difficult-desc">Выберите сложность игры:</p>
-          <ul class="game-options__difficult-list">
-            <li class="game-options__difficult-item">
-              <input type="radio" id="easy-option" name="difficult-option" value="difficult-easy" checked>
-              <label for="easy-option">Легкий</label>
-            </li>
-            <li class="game-options__difficult-item">
-              <input type="radio" id="medium-option" name="difficult-option" value="difficult-medium">
-              <label for="medium-option">Средний</label>
-            </li>
-            <li class="game-options__difficult-item">
-              <input type="radio" id="hard-option" name="difficult-option" value="difficult-hard">
-              <label for="hard-option">Сложный</label>
-            </li>
-          </ul>
-          <button class="custom-btn game-options__start-btn">Начать игру</button>
+    <div class="sections-wrapper">
+      <section class="game" id="game">
+        <div class="game__field"> <!-- game__field--gaming -->
+          <button class="custom-btn custom-btn--big game__start-btn">Начать игру</button> <!-- custom-btn--hide-->
+          <div class="game-options game__options">  <!-- game-options--show -->
+            <p class="game-options__fruits-desc">Выберите фрукты, которыми хотите играть: </p>
+            <ul class="game-options__fruits-list">
+              <li class="game-options__fruits-item">
+                <img src="img/mandarin.svg" alt="Мандарин" width="35" height="35">
+                <input type="checkbox" name="orange-option" id="orange-option" checked>
+                <label for="orange-option">Мандарин</label>
+              </li>
+              <li class="game-options__fruits-item">
+                <img src="img/lemon.svg" alt="Лимон" width="35" height="35">
+                <input type="checkbox" name="lemon-option" id="lemon-option">
+                <label for="lemon-option">Лимон</label>
+              </li>
+              <li class="game-options__fruits-item">
+                <img src="img/watermelon.svg" alt="Арбуз" width="35" height="35">
+                <input type="checkbox" name="watermelon-option" id="watermelon-option">
+                <label for="watermelon-option">Арбуз</label>
+              </li>
+            </ul>
+            <p class="game-options__difficult-desc">Выберите сложность игры:</p>
+            <ul class="game-options__difficult-list">
+              <li class="game-options__difficult-item">
+                <input type="radio" id="easy-option" name="difficult-option" value="difficult-easy" checked>
+                <label for="easy-option">Легкий</label>
+              </li>
+              <li class="game-options__difficult-item">
+                <input type="radio" id="medium-option" name="difficult-option" value="difficult-medium">
+                <label for="medium-option">Средний</label>
+              </li>
+              <li class="game-options__difficult-item">
+                <input type="radio" id="hard-option" name="difficult-option" value="difficult-hard">
+                <label for="hard-option">Сложный</label>
+              </li>
+            </ul>
+            <button class="custom-btn game-options__start-btn">Начать игру</button>
+          </div>
+          <img src="img/mandarin.svg" alt="Мандарин" width="35" height="35" style="display: none">
+          <img src="img/lemon.svg" alt="Лимон" width="35" height="35" style="display: none">
+          <img src="img/watermelon.svg" alt="Арбуз" width="35" height="35" style="display: none">
+          <span class="game__self-score">Счет: 0</span> <!-- game__self-score--show -->
+          <span class="game__timer">Осталось: 5 сек.</span> <!-- game__timer--show -->
         </div>
-        <!-- <img src="img/mandarin.svg" alt="Мандарин">
-        <img src="img/lemon.svg" alt="Лимон">
-        <span class="game__self-record">Ваш лучший результат: 0</span> -->
-      </div>
-      <ul class="game__levels">
-        <li><button class="custom-btn-2 custom-btn-2--disabled">1</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">2</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">3</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">4</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">5</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">6</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">7</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">8</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">9</button></li>
-        <li><button class="custom-btn-2 custom-btn-2--disabled">10</button></li>
-      </ul>
-    </section>
+      </section>
+      <section class="levels">
+        <h2 class="section-title section-title--levels levels__title">Уровни:</h2>
+        <ul class="levels__list">
+          <li class="levels__item">
+            <button class="custom-btn-2">1</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>2</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>3</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>4</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>5</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>6</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>7</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>8</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>9</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 custom-btn-2--disabled" disabled>10</button>
+          </li>
+        </ul>
+      </section>
+    </div>
 
     <section class="records" id="records">
         <h2 class="section-title">Лучшие результаты:</h2>
         <table class="records__table">
           <tr>
-            <th>№</th>
-            <th>Ник</th>
-            <th>Дата</th>
-            <th>Счет</th>
+            <th class="records__number">№</th>
+            <th class="records__nick">Ник</th>
+            <th class="records__date">Дата</th>
+            <th class="records__score">
+              Счет <button class="records__difficult records__difficult--hard">(Сложный)</button>
+            </th>
           </tr>
           <tr>
             <td>1</td>

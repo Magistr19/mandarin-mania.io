@@ -1,7 +1,6 @@
 .game-options {
+  display: none;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 440px;
   padding-top: 20px;
   padding-right: $desktop-gap;
   padding-bottom: 25px;
@@ -9,6 +8,10 @@
 
   background-color: $white;
   border-radius: 12px;
+}
+
+.game-options--show {
+  display: block;
 }
 
 .game-options__fruits-desc {
@@ -45,17 +48,17 @@
   label {
     position: relative;
 
-    padding-top: 25px;
+    padding-top: 35px;
 
     &::before {
       content: "";
       position: absolute;
       top: 0;
-      left: calc(50% - 10px);
+      left: calc(50% - 15px);
 
       box-sizing: border-box;
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
 
       border: 2px solid $grey;
       border-radius: 2px;
@@ -66,16 +69,16 @@
     &::after {
       content: "";
       position: absolute;
-      top: 4px;
-      left: calc(50% - 7px);
+      top: 8px;
+      left: calc(50% - 10px);
 
       display: none;
-      width: 16px;
-      height: 18px;
+      width: 25px;
+      height: 25px;
 
       background-image: url("../img/checkbox-checked.svg");
       background-repeat: no-repeat;
-      background-size: 100%;
+      background-size: 20px;
     }
 
     &:hover,
@@ -124,7 +127,7 @@
   label {
     position: relative;
 
-    padding-top: 25px;
+    padding-top: 30px;
 
     &::before {
       content: "";

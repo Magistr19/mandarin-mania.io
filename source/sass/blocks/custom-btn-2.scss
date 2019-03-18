@@ -1,0 +1,30 @@
+.custom-btn-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: 2px solid $grey;
+  font-size: 25px;
+  line-height: 1.3;
+  color: darken($grey, 35);
+  border-radius: 6px;
+  transition: border-color 0.3s ease-in, color 0.3s ease-in;
+}
+
+.custom-btn-2:not(:disabled) {
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: $orange;
+    color: $orange;
+  }
+}
+
+.custom-btn-2:disabled {
+  background-image: url('../img/lock.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -9999px;
+}
