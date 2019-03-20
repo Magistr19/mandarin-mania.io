@@ -1,112 +1,189 @@
 @media (max-width: $mobile-size) {
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
+  .records {
+    padding-left: $mobile-gap;
+    padding-right: $mobile-gap;
+  }
+
+  .records__table, .records__table thead, .records__table tbody, .records__table th, .records__table td, .records__table tr {
 		display: block;
 	}
 
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr {
+	.records__table thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 
-	/* tr { border: 1px solid red; } */
+	//.records__table tr { border: 1px solid red; }
 
-	td {
-		/* Behave  like a "row" */
-		/* border: none; */
+	.records__table td {
 		border-bottom: 1px solid #eee;
 		position: relative;
 		padding-left: 50%;
-	}
+  }
 
-	td:before {
+	.records__table td:before {
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
-		top: 6px;
+		top: 2px;
 		left: 6px;
 		width: 45%;
 		padding-right: 10px;
 		white-space: nowrap;
 	}
 
-	/*
-	Label the data
-	*/
-	td:nth-of-type(1):before { content: "First Name"; }
-	td:nth-of-type(2):before { content: "Last Name"; }
-	td:nth-of-type(3):before { content: "Job Title"; }
-	td:nth-of-type(4):before { content: "Favorite Color"; }
-	td:nth-of-type(5):before { content: "Wars of Trek?"; }
-	td:nth-of-type(6):before { content: "Porn Name"; }
-	td:nth-of-type(7):before { content: "Date of Birth"; }
-	td:nth-of-type(8):before { content: "Dream Vacation City"; }
-	td:nth-of-type(9):before { content: "GPA"; }
-	td:nth-of-type(10):before { content: "Arbitrary Data"; }
-}
 
-.records {
-  padding-left: $mobile-gap;
-  padding-right: $mobile-gap;
-}
+	.records__table td:nth-of-type(1):before { content: "№"; }
+	.records__table td:nth-of-type(2):before { content: "Ник"; }
+	.records__table td:nth-of-type(3):before { content: "Дата"; }
+  .records__table td:nth-of-type(4):before { content: "Счет"; }
 
-.records__table {
-  border-collapse: collapse;
-  width: 100%;
-
-  tr {
-    td:nth-child(2) {
-      padding-left: 5px;
-      text-align: left;
-    }
-
-    td:nth-child(3) {
-      width: 100px;
-    }
-
-    td:nth-child(4) {
-      width: 130px;
-    }
+  .records__table tr:nth-of-type(2n) {
+    background-color: $grey;
   }
 
-  th {
-    font-size: 20px;
+  .records__difficult {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 18px;
     line-height: 1.3;
-    border: 1px solid $black;
-    text-align: center;
+
+    &--hard {
+      color: #e03e2b;
+    }
+
+    &--medium {
+      color: $yellow;
+    }
+
+    &--easy {
+      color: #41cc32;
+    }
   }
 
-  td {
-    border: 1px solid $black;
-    text-align: center;
+  .records__difficult--no-table {
+    font-size: 23px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 1.3;
+  }
+
+  .records__difficult--table {
+    display: none;
   }
 }
 
-.records__number {
-  width: 50px;
+
+@media (min-width: $mobile-size + 1) {
+  .records {
+    padding-left: $mobile-gap;
+    padding-right: $mobile-gap;
+  }
+
+  .records__table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+      td:nth-child(2) {
+        padding-left: 5px;
+        text-align: left;
+      }
+
+      td:nth-child(3) {
+        width: 100px;
+      }
+
+      td:nth-child(4) {
+        width: 130px;
+      }
+    }
+
+    th {
+      font-size: 20px;
+      line-height: 1.3;
+      border: 1px solid $black;
+      text-align: center;
+    }
+
+    td {
+      border: 1px solid $black;
+      text-align: center;
+    }
+  }
+
+  .records__number {
+    width: 50px;
+  }
+
+  .records__difficult--no-table {
+    display: none;
+	}
+
+	.records__difficult {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 18px;
+    line-height: 1.3;
+
+    &--hard {
+      color: #e03e2b;
+    }
+
+    &--medium {
+      color: $yellow;
+    }
+
+    &--easy {
+      color: #41cc32;
+    }
+  }
+
+  .records__table thead tr {
+      background-color: $orange;
+  }
+
+  .records__table tr:nth-of-type(2n) {
+    background-color: lighten($grey, 10);
+  }
 }
 
-.records__difficult {
-  border: none;
-  background-color: transparent;
-  padding-left: 0;
-  padding-right: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 18px;
-  line-height: 1.3;
-
-  &--hard {
-    color: #e03e2b;
+@media (min-width: $tablet-size) {
+	.records {
+		padding-left: $tablet-gap;
+		padding-right: $tablet-gap;
   }
 
-  &--medium {
-    color: $yellow;
+  .records__number {
+    width: 10%;
   }
 
-  &--easy {
-    color: #41cc32;
+  .records__date {
+    width: 20%;
+  }
+
+  .records__score {
+    width: 25%;
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .records {
+    box-sizing: border-box;
+    width: $desktop-size;
+    padding-left: $desktop-gap;
+    padding-right: $desktop-gap;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

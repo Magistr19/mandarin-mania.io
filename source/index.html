@@ -45,7 +45,7 @@
         <ul class="main-nav__list">
           <li class="main-nav__item"><a href="#game">Играть</a></li>
           <li class="main-nav__item"><a href="#records">Таблица рекордов</a></li>
-          <li class="main-nav__item"><a href="#info">Правила игры</a></li>
+          <li class="main-nav__item"><a href="#info">Описание игры</a></li>
           <li class="main-nav__item"><a href="#contacts">Контакты</a></li>
         </ul>
       </nav>
@@ -106,50 +106,52 @@
         <h2 class="section-title section-title--levels levels__title">Уровни:</h2>
         <ul class="levels__list">
           <li class="levels__item">
-            <button class="custom-btn-2">1</button>
+            <button class="custom-btn-2" disabled>1</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>2</button>
+            <button class="custom-btn-2" disabled>2</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>3</button>
+            <button class="custom-btn-2" disabled>3</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>4</button>
+            <button class="custom-btn-2" disabled>4</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>5</button>
+            <button class="custom-btn-2" disabled>5</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>6</button>
+            <button class="custom-btn-2" disabled>6</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>7</button>
+            <button class="custom-btn-2" disabled>7</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>8</button>
+            <button class="custom-btn-2" disabled>8</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>9</button>
+            <button class="custom-btn-2" disabled>9</button>
           </li>
           <li class="levels__item">
-            <button class="custom-btn-2 custom-btn-2--disabled" disabled>10</button>
+            <button class="custom-btn-2" disabled>10</button>
           </li>
         </ul>
       </section>
     </div>
 
     <section class="records" id="records">
-        <h2 class="section-title">Лучшие результаты:</h2>
+        <h2 class="section-title">Таблица лидеров<button class="records__difficult records__difficult--no-table records__difficult--hard">(Сложный)</button>:</h2>
         <table class="records__table">
-          <tr>
-            <th class="records__number">№</th>
-            <th class="records__nick">Ник</th>
-            <th class="records__date">Дата</th>
-            <th class="records__score">
-              Счет <button class="records__difficult records__difficult--hard">(Сложный)</button>
-            </th>
-          </tr>
+          <thead>
+            <tr>
+              <th class="records__number">№</th>
+              <th class="records__nick">Ник</th>
+              <th class="records__date">Дата</th>
+              <th class="records__score">
+                Счет <button class="records__difficult records__difficult--table records__difficult--hard">(Сложный)</button>
+              </th>
+            </tr>
+          </thead>
           <tr>
             <td>1</td>
             <td>Igor</td>
@@ -214,9 +216,33 @@
     </section>
 
     <section class="info" id="info">
-      <h2 class="section-title">Правила игры:</h2>
+      <h2 class="section-title info__title">Описание игры:</h2>
       <p class="info__description">
-
+        Собирайте фрукты за определенное время - это все, что вам нужно знать, чтобы окунуться в захватывающий мир Mandarin Mania! Отточите свои навыки ловкости и реакции собирая фрукты. В вашем распоряжении широкий выбор фруктов и уровней сложностей, которые помогут вам сократить путь к вершине.
+      </p>
+      <p class="info__description">Выбор фрукта не влияет на сложность и баланс игры, они нужны для кастомизации и разнообразия геймплея. На момент релиза, всего доступно выбор трех фруктов: </p>
+      <ul class="info__list-fruits">
+        <li class="info__item-fruit"><img src="img/mandarin.svg" alt="Мандарин" width="70" height="70"><span>Мандарин</span></li>
+        <li class="info__item-fruit"><img src="img/lemon.svg" alt="Лимон" width="70" height="70"><span>Лимон</span></li>
+        <li class="info__item-fruit"><img src="img/watermelon.svg" alt="Арбуз" width="70" height="70"><span>Арбуз</span></li>
+      </ul>
+      <p class="info__description">Уровни сложности:</p>
+      <ul class="info__list-difficulties">
+        <li class="info__item-difficulties">
+          <span class="info__difficult-type info__difficult-type--easy">Легкий</span> - достаточно времени на поимку фрукта
+        </li>
+        <li class="info__item-difficulties">
+          <span class="info__difficult-type info__difficult-type--medium">Средний</span> - достаточно времени на поимку фрукта
+        </li>
+        <li class="info__item-difficulties">
+          <span class="info__difficult-type info__difficult-type--hard">Сложный</span> - достаточно времени на поимку фрукта
+        </li>
+      </ul>
+      <p class="info__description">
+        Игра доступна под все разрешения экрана, в том числе и мобильные устройства. Сразитесь с вашими друзьями и продемонстрируйте им свои совершенные навыки мастерства, попав в таблицу лидеров.
+      </p>
+      <p class="info__description">
+        Проект был разработан во время прохождения курса <a class="info__link" href="https://odessa.ithillel.ua/courses/front-end-pro-odessa">Front-End Pro</a> в компьютерной школе Hillel. Все исходные файлы можно посмотреть на <a class="info__link" href="https://github.com/Magistr19/mandarin-mania.io">GitHub</a>
       </p>
     </section>
 
