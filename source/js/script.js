@@ -3,6 +3,18 @@
 let url = 'http://127.0.0.1:8087';
 let currentRecordsDiff = 'hard';
 
+let currentGameLvl;
+let gamingFruits = [];
+let gamingDiff = '';
+let score;
+
+// localStorage.setItem("nickName", "Igor");
+// localStorage.setItem("userId", "1231231231234");
+// localStorage.setItem("unlockedLvls", "3");
+
+// Get records table
+fillRecords(currentRecordsDiff, localStorage.getItem('nickName'));
+
 // Mobile nav js
 let navBtn = document.querySelector('.page-header__nav-btn');
 let mainNav = document.querySelector('.main-nav');
@@ -27,11 +39,8 @@ let registerSendBtn = document.querySelector('.modal-register__send-btn');
 let gameField = document.querySelector('.game__field');
 let gameStrtBtn = document.querySelector('.game__start-btn');
 let gameOptions = document.querySelector('.game__options');
+let gameOptionsStrt = document.querySelector('.game-options__start-btn');
 let levelBtns = document.querySelectorAll('.levels__btn');
-
-// localStorage.setItem("nickName", "Igor");
-// localStorage.setItem("userId", "1231231231234");
-// localStorage.setItem("unlockedLvls", "3");
 
 if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localStorage.getItem('unlockedLvls')) { //Local storage check
 	showGameField();
@@ -62,28 +71,48 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
       return;
     }
 
-    let postNickUrl = `${url}/?nickName=${registerNick}`;
-    fetch(postNickUrl, {method:'POST'})
-		.then(res => {
+    let postNickUrl = `${url}`;
+    let postNick = {};
+    postNick.nickName = registerNick;
+
+    let objStringify = JSON.stringify(postNick);
+
+    fetch(postNickUrl,
+    {
+      method:'POST',
+      body: objStringify
+    })
+		  .then(res => {
 			res.json()
 				.then(res => {
+          console.log(res);
           if (res.isSuccess) {
             localStorage.setItem("nickName", registerNick);
             localStorage.setItem("userId", res.data);
             localStorage.setItem("unlockedLvls", "1");
+            hideModal();
+            showGameField();
+            openLevels();
+            currentGameLvl = 1;
           } else {
             alert('Такой пользователь уже существует!')
           }
 				})
 		})
-		//?! Отправить запрос POST
-		//?! Callback если запрос не получился
-		//?! Callback ecли получился запрос
   });
 }
 
-// FillTableRecords
-fillRecords(currentRecordsDiff, localStorage.getItem('nickName'));
+//Game field options
+gameOptionsStrt.addEventListener('click', evt => {
+  let mandarin = gameOptions.querySelector('');//?! true - false
+  let lemon = gameOptions.querySelector('');//?! true - false
+  let watermelon = gameOptions.querySelector('');//?! true - false
+  let difficult = gameOptions.querySelector('');//?! 'easy', 'hard', 'medium'
+
+  gamingDiff = difficult;
+  gamingFruits.push(mandarin, lemon, watermelon);
+});
+
 
 function showGameField() {
 	gameField.classList.add('game__field--gaming');
@@ -155,4 +184,13 @@ function fillRecords(difficult, nickName) {
 					}
 				})
 		})
+}
+
+function hideModal() {
+  overlay.classList.remove('overlay--show');
+  registerModal.classList.remove('modal-register--show');
+}
+
+function postResult() {
+
 }

@@ -8,14 +8,11 @@
 		display: block;
 	}
 
-	/* Hide table headers (but not display: none;, for accessibility) */
 	.records__table thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
-
-	//.records__table tr { border: 1px solid red; }
 
 	.records__table td {
 		border-bottom: 1px solid #eee;
@@ -24,9 +21,7 @@
   }
 
 	.records__table td:before {
-		/* Now like a table header */
 		position: absolute;
-		/* Top/left values mimic padding */
 		top: 2px;
 		left: 6px;
 		width: 45%;
