@@ -156,6 +156,10 @@
   .records__table tr:nth-of-type(2n) {
     background-color: lighten($grey, 10);
   }
+
+  .records__table tbody .records__me {
+    background-color: $yellow;
+  }
 }
 
 @media (min-width: $tablet-size) {
