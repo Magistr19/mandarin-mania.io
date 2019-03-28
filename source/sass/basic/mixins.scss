@@ -40,3 +40,16 @@
   margin-left: 0;
   padding: 0;
 }
+
+@mixin btn-reset {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+  pointer-events: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}

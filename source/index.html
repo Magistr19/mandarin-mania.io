@@ -64,42 +64,54 @@
             <ul class="game-options__fruits-list">
               <li class="game-options__fruits-item">
                 <img src="img/mandarin.svg" alt="Мандарин" width="35" height="35">
-                <input type="checkbox" name="orange-option" id="orange-option" checked>
+                <input type="checkbox" name="orange-option" id="orange-option" data-fruit="mandarin" checked>
                 <label for="orange-option">Мандарин</label>
               </li>
               <li class="game-options__fruits-item">
                 <img src="img/lemon.svg" alt="Лимон" width="35" height="35">
-                <input type="checkbox" name="lemon-option" id="lemon-option">
+                <input type="checkbox" name="lemon-option" id="lemon-option" data-fruit="lemon">
                 <label for="lemon-option">Лимон</label>
               </li>
               <li class="game-options__fruits-item">
                 <img src="img/watermelon.svg" alt="Арбуз" width="35" height="35">
-                <input type="checkbox" name="watermelon-option" id="watermelon-option">
+                <input type="checkbox" name="watermelon-option" id="watermelon-option" data-fruit="watermelon">
                 <label for="watermelon-option">Арбуз</label>
               </li>
             </ul>
             <p class="game-options__difficult-desc">Выберите сложность игры:</p>
             <ul class="game-options__difficult-list">
               <li class="game-options__difficult-item">
-                <input type="radio" id="easy-option" name="difficult-option" value="difficult-easy" checked>
+                <input type="radio" id="easy-option" name="difficult-option" value="easy" checked>
                 <label for="easy-option">Легкий</label>
               </li>
               <li class="game-options__difficult-item">
-                <input type="radio" id="medium-option" name="difficult-option" value="difficult-medium">
+                <input type="radio" id="medium-option" name="difficult-option" value="medium">
                 <label for="medium-option">Средний</label>
               </li>
               <li class="game-options__difficult-item">
-                <input type="radio" id="hard-option" name="difficult-option" value="difficult-hard">
+                <input type="radio" id="hard-option" name="difficult-option" value="hard">
                 <label for="hard-option">Сложный</label>
               </li>
             </ul>
             <button class="custom-btn game-options__start-btn">Начать игру</button>
           </div>
-          <img src="img/mandarin.svg" alt="Мандарин" width="35" height="35" style="display: none">
-          <img src="img/lemon.svg" alt="Лимон" width="35" height="35" style="display: none">
-          <img src="img/watermelon.svg" alt="Арбуз" width="35" height="35" style="display: none">
-          <span class="game__self-score">Счет: 0</span> <!-- game__self-score--show -->
-          <span class="game__timer">Осталось: 5 сек.</span> <!-- game__timer--show -->
+          <div class="game__fruit game__fruit--mandarin" style="display: none"></div>
+          <div class="game__fruit game__fruit--lemon" style="display: none"></div>
+          <div class="game__fruit game__fruit--watermelon" style="display: none"></div>
+          <button class="game__self-score">Счет: </button> <!-- game__self-score--show -->
+          <button class="game__catch-timer">Время на поимку: </button> <!-- game__catch-timer--show -->
+          <button class="game__lvl-timer">Продержитесь: </button> <!-- game__lvl-timer--show -->
+          <div class="game-options game__winner-modal"> <!-- game-options--winner-show -->
+            <p class="game-options__desc">Вы прошли уровень!</p>
+            <p class="game-options__score">Ваш счет: 0 очков</p>
+            <button class="game-options__continue-btn">Продолжить игру</button>
+            <button class="game-options__end-btn">Закончить игру</button>
+          </div>
+          <div class="game-options game__looser-modal"> <!-- game-options--looser-show -->
+            <p class="game-options__desc">Вы проиграли!</p>
+            <p class="game-options__score">Ваш счет: 0 очков</p>
+            <button class="game-options__end-btn">Закончить игру</button>
+          </div>
         </div>
       </section>
       <section class="levels">
@@ -119,21 +131,6 @@
           </li>
           <li class="levels__item">
             <button class="custom-btn-2 levels__btn" disabled>5</button>
-          </li>
-          <li class="levels__item">
-            <button class="custom-btn-2 levels__btn" disabled>6</button>
-          </li>
-          <li class="levels__item">
-            <button class="custom-btn-2 levels__btn" disabled>7</button>
-          </li>
-          <li class="levels__item">
-            <button class="custom-btn-2 levels__btn" disabled>8</button>
-          </li>
-          <li class="levels__item">
-            <button class="custom-btn-2 levels__btn" disabled>9</button>
-          </li>
-          <li class="levels__item">
-            <button class="custom-btn-2 levels__btn" disabled>10</button>
           </li>
         </ul>
       </section>
@@ -229,13 +226,13 @@
       <p class="info__description">Уровни сложности:</p>
       <ul class="info__list-difficulties">
         <li class="info__item-difficulties">
-          <span class="info__difficult-type info__difficult-type--easy">Легкий</span> - достаточно времени на поимку фрукта
+          <span class="info__difficult-type info__difficult-type--easy">Легкий</span> - достаточно времени на поимку фрукта, быстрые уровни
         </li>
         <li class="info__item-difficulties">
-          <span class="info__difficult-type info__difficult-type--medium">Средний</span> - достаточно времени на поимку фрукта
+          <span class="info__difficult-type info__difficult-type--medium">Средний</span> - времени на поимку фрукта осталось еще меньше! Уровни длятся дольше
         </li>
         <li class="info__item-difficulties">
-          <span class="info__difficult-type info__difficult-type--hard">Сложный</span> - достаточно времени на поимку фрукта
+          <span class="info__difficult-type info__difficult-type--hard">Сложный</span> - для истинных хардковщиков, времени на поимку фрукта почти не осталось. Уровни длятся долго.
         </li>
       </ul>
       <p class="info__description">

@@ -49,6 +49,11 @@
     font-size: 18px;
     line-height: 1.3;
 
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
     &--hard {
       color: #e03e2b;
     }
@@ -130,6 +135,11 @@
     text-decoration: underline;
     font-size: 18px;
     line-height: 1.3;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
 
     &--hard {
       color: #e03e2b;

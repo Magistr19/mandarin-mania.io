@@ -1,19 +1,89 @@
 'use strict';
 
+//Global variables
 let url = 'http://127.0.0.1:8087';
-let currentRecordsDiff = 'hard';
-
+let currentTableDiff = 'hard';
 let currentGameLvl;
 let gamingFruits = [];
 let gamingDiff = '';
 let score;
+let maxLvl = 5;
 
-// localStorage.setItem("nickName", "Igor");
-// localStorage.setItem("userId", "1231231231234");
-// localStorage.setItem("unlockedLvls", "3");
+//Gaming difficulties options
+let easyfruitCatchTime = [7, 6, 5, 5, 5];
+let easyLvlTime = [15, 20, 25, 30, 35];
+
+let mediumfruitCatchTime = [6, 5, 4, 4, 4];
+let mediumLvlTime = [20, 25, 30, 35, 40];
+
+let hardfruitCatchTime = [5, 4, 3, 3, 2];
+let hardLvlTime = [30, 40, 45, 50, 60];
+
+// Global dom elements
+let playBtn = document.querySelector('.game__start-btn');
+let overlay = document.querySelector('.overlay');
+let registerModal = document.querySelector('.modal-register');
+let closeModal = document.querySelector('.modal-register__close-btn');
+let registerForm = document.querySelector('.modal-register__form');
+let registerSendBtn = document.querySelector('.modal-register__send-btn');
+
+let gameField = document.querySelector('.game__field');
+let gameOptions = document.querySelector('.game__options');
+let gameOptionsStrt = document.querySelector('.game-options__start-btn');
+let levelBtns = document.querySelectorAll('.levels__btn');
+
+let selfScore = document.querySelector('.game__self-score');
+let gameCatchTimer = document.querySelector('.game__catch-timer');
+let gameLvlTimer = document.querySelector('.game__lvl-timer');
+let gamingMandarin = document.querySelector('.game__fruit--mandarin');
+let gamingLemon = document.querySelector('.game__fruit--lemon');
+let gamingWatermelon = document.querySelector('.game__fruit--watermelon');
+
+let modalWinner = document.querySelector('.game__winner-modal');
+let modalLooser = document.querySelector('.game__looser-modal');
+
 
 // Get records table
-fillRecords(currentRecordsDiff, localStorage.getItem('nickName'));
+fillRecords();
+
+//Records table switch difficult
+let switchTableBtns = document.querySelectorAll('.records__difficult');
+
+for (let i = 0; i < switchTableBtns.length; i++) {
+  switchTableBtns[i].addEventListener('click', switchTableDiff);
+}
+
+function switchTableDiff(evt) {
+  evt.preventDefault();
+
+  if (evt.target.classList.contains('records__difficult--hard')) {
+		for (let i = 0; i < switchTableBtns.length; i++) {
+			switchTableBtns[i].classList.remove('records__difficult--hard');
+			switchTableBtns[i].classList.add('records__difficult--easy');
+			switchTableBtns[i].textContent = '(Легкий)';
+		}
+
+		currentTableDiff = 'easy';
+  } else if (evt.target.classList.contains('records__difficult--medium')) {
+		for (let i = 0; i < switchTableBtns.length; i++) {
+			switchTableBtns[i].classList.remove('records__difficult--medium');
+			switchTableBtns[i].classList.add('records__difficult--hard');
+			switchTableBtns[i].textContent = '(Тяжелый)';
+		}
+
+		currentTableDiff = 'hard';
+  } else if (evt.target.classList.contains('records__difficult--easy')) {
+		for (let i = 0; i < switchTableBtns.length; i++) {
+			switchTableBtns[i].classList.remove('records__difficult--easy');
+			switchTableBtns[i].classList.add('records__difficult--medium');
+			switchTableBtns[i].textContent = '(Средний)';
+		}
+
+		currentTableDiff = 'medium';
+  }
+
+  fillRecords();
+}
 
 // Mobile nav js
 let navBtn = document.querySelector('.page-header__nav-btn');
@@ -28,23 +98,11 @@ function toggleNav(evt) {
 }
 
 // Game field on start js
-let playBtn = document.querySelector('.game__start-btn');
-let overlay = document.querySelector('.overlay');
-let registerModal = document.querySelector('.modal-register');
-let closeModal = document.querySelector('.modal-register__close-btn');
-
-let registerForm = document.querySelector('.modal-register__form');
-let registerSendBtn = document.querySelector('.modal-register__send-btn');
-
-let gameField = document.querySelector('.game__field');
-let gameStrtBtn = document.querySelector('.game__start-btn');
-let gameOptions = document.querySelector('.game__options');
-let gameOptionsStrt = document.querySelector('.game-options__start-btn');
-let levelBtns = document.querySelectorAll('.levels__btn');
-
 if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localStorage.getItem('unlockedLvls')) { //Local storage check
-	showGameField();
-  openLevels();
+	showGameOptions();
+  openStorageLevels();
+  currentGameLvl = +localStorage.getItem('unlockedLvls');
+  setCurrentLvlBtn();
 } else {
   playBtn.addEventListener('click', toggleModal);
   overlay.addEventListener('click', toggleModal);
@@ -71,13 +129,12 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
       return;
     }
 
-    let postNickUrl = `${url}`;
     let postNick = {};
     postNick.nickName = registerNick;
 
     let objStringify = JSON.stringify(postNick);
 
-    fetch(postNickUrl,
+    fetch(url,
     {
       method:'POST',
       body: objStringify
@@ -85,15 +142,17 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
 		  .then(res => {
 			res.json()
 				.then(res => {
-          console.log(res);
           if (res.isSuccess) {
             localStorage.setItem("nickName", registerNick);
-            localStorage.setItem("userId", res.data);
+            localStorage.setItem("userId", "" + res.data);
             localStorage.setItem("unlockedLvls", "1");
-            hideModal();
-            showGameField();
-            openLevels();
+
             currentGameLvl = 1;
+
+            hideModal();
+            showGameOptions();
+            openStorageLevels();
+            setCurrentLvlBtn();
           } else {
             alert('Такой пользователь уже существует!')
           }
@@ -104,37 +163,92 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
 
 //Game field options
 gameOptionsStrt.addEventListener('click', evt => {
-  let mandarin = gameOptions.querySelector('');//?! true - false
-  let lemon = gameOptions.querySelector('');//?! true - false
-  let watermelon = gameOptions.querySelector('');//?! true - false
-  let difficult = gameOptions.querySelector('');//?! 'easy', 'hard', 'medium'
+	evt.preventDefault();
 
-  gamingDiff = difficult;
-  gamingFruits.push(mandarin, lemon, watermelon);
+	gamingFruits = [];
+	gamingDiff = '';
+	score = 0;
+
+  let fruits = gameOptions.querySelectorAll('.game-options__fruits-list input');
+  let difficulties = gameOptions.querySelectorAll('.game-options__difficult-list input');
+
+	for (let i = 0; i < fruits.length; i++) {
+		if (fruits[i].checked) {
+			gamingFruits.push(fruits[i].getAttribute('data-fruit'));
+		}
+  }
+
+  if (gamingFruits.length === 0) {
+    alert('Укажите хотя бы один фрукт!');
+    return;
+  }
+
+  for (let i = 0; i < difficulties.length; i++) {
+    if (difficulties[i].checked) {
+      gamingDiff = difficulties[i].value;
+      break;
+    }
+  }
+
+
+  gameOptions.classList.remove('game-options--show');
+  selfScore.classList.add('game__self-score--show');
+  gameCatchTimer.classList.add('game__catch-timer--show');
+  gameLvlTimer.classList.add('game__lvl-timer--show');
+
+  strtGame();
 });
 
 
-function showGameField() {
+function showGameOptions() {
 	gameField.classList.add('game__field--gaming');
-  gameStrtBtn.classList.add('custom-btn--hide');
+  playBtn.classList.add('custom-btn--hide');
   gameOptions.classList.add('game-options--show');
 }
 
-function openLevels() {
+function openStorageLevels() {
   if (localStorage.getItem("unlockedLvls")) {
     let unlockedLvls = +localStorage.getItem("unlockedLvls");
 
-    if (unlockedLvls > levelBtns.length) {
-      unlockedLvls = levelBtns.length;
+    if (unlockedLvls > maxLvl) {
+      unlockedLvls = maxLvl;
     }
 
     for (let i = 0; i < unlockedLvls; i++) {
       levelBtns[i].disabled = false;
+      levelBtns[i].addEventListener('click', lvlBtnListener);
     }
   }
 }
 
-function fillRecords(difficult, nickName) {
+function openLevel(numberLvl) {
+  if (numberLvl > maxLvl) {
+    numberLvl = maxLvl;
+  }
+
+  if (+localStorage.getItem('unlockedLvls') < numberLvl) {
+    localStorage.setItem("unlockedLvls", "" + numberLvl)
+  }
+
+  if (levelBtns[numberLvl - 1].disabled) {
+    levelBtns[numberLvl - 1].disabled = false;
+    levelBtns[numberLvl - 1].addEventListener('click', lvlBtnListener);
+  }
+}
+
+function setCurrentLvlBtn() {
+  for (let i = 0; i < levelBtns.length; i++) {
+    if (levelBtns[i].classList.contains('custom-btn-2--current')) {
+      levelBtns[i].classList.remove('custom-btn-2--current');
+    }
+  }
+
+  levelBtns[currentGameLvl - 1].classList.add('custom-btn-2--current');
+}
+
+function fillRecords() {
+  let difficult = currentTableDiff;
+  let nickName = localStorage.getItem('nickName')
 	let recordsUrl = `${url}/?difficult=${difficult}&nickName=${nickName}`;
 	fetch(recordsUrl)
 		.then(res => {
@@ -180,7 +294,8 @@ function fillRecords(difficult, nickName) {
               recordsTable.appendChild(tableRow);
 						}
 					} else {
-						console.error('Cannot load records');
+            console.error('Cannot load records');
+            console.log(res.errorText);
 					}
 				})
 		})
@@ -191,6 +306,171 @@ function hideModal() {
   registerModal.classList.remove('modal-register--show');
 }
 
-function postResult() {
+function lvlBtnListener(evt) {
+  evt.preventDefault();
 
+  currentGameLvl = +evt.target.textContent;
+  showGameOptions();
+  setCurrentLvlBtn();
+}
+
+function postRecord() {
+  let objRecord = {};
+  objRecord.score = score;
+  objRecord.difficult = gamingDiff;
+  objRecord.nickName = localStorage.getItem('nickName');
+  objRecord.userId = +localStorage.getItem('userId');
+
+  let date = new Date();
+  date = formatDate(date);
+
+  objRecord.date = date;
+
+  let objStringify = JSON.stringify(objRecord);
+
+  fetch(url, {
+    method: 'POST',
+    body: objStringify
+  })
+    .then(res => {
+      res.json()
+        .then(res => {
+          if (res.isSuccess) {
+						if (res.data === 'Result is updated') {
+              fillRecords();
+            }
+					}
+        })
+    })
+}
+
+
+function strtGame() {
+  //Gaming preparation
+  let randomFruit;
+  let fruitCatchTime;
+  let lvlTime;
+  let catchTimeDiff;
+
+  selfScore.classList.add('game__self-score--show');
+  gameCatchTimer.classList.add('game__catch-timer--show');
+  gameLvlTimer.classList.add('game__lvl-timer--show');
+
+  switch (gamingDiff) {
+    case 'easy':
+      fruitCatchTime = easyfruitCatchTime[currentGameLvl - 1];
+      lvlTime = easyLvlTime[currentGameLvl - 1];
+      break;
+    case 'medium':
+      fruitCatchTime = mediumfruitCatchTime[currentGameLvl - 1];
+      lvlTime = mediumLvlTime[currentGameLvl - 1];
+      break;
+    case 'hard':
+      fruitCatchTime = hardfruitCatchTime[currentGameLvl - 1];
+      lvlTime = mediumLvlTime[currentGameLvl - 1];
+      break;
+  }
+
+  gamingMandarin.addEventListener('click', fruitListener);
+  gamingLemon.addEventListener('click', fruitListener);
+  gamingWatermelon.addEventListener('click', fruitListener);
+
+  selfScore.textContent = `Счет: ${score}`;
+
+  //Gaming process
+  generateRdmFruit();
+  catchTimeDiff = fruitCatchTime;
+  let startTime = new Date().getTime();
+
+  let intervalTimer = setInterval( () => {
+    let currentTime = new Date().getTime();
+    let diffTime = (currentTime - startTime)/1000;
+
+    gameLvlTimer.textContent = `Продержитесь: ${(lvlTime - diffTime).toFixed(1)} сек`;
+    catchTimeDiff -= 0.1;
+    gameCatchTimer.textContent = `Время на поимку: ${(catchTimeDiff).toFixed(1)} сек`;
+
+    if (diffTime >= lvlTime) {
+      clearGameField();
+      postRecord();
+      showWinnerModal();
+    }
+
+    if (catchTimeDiff <= 0) {
+      clearGameField();
+      postRecord();
+      showLooserModal();
+    }
+  }, 100);
+
+
+  //Gaming functions
+  function fruitListener(evt) {
+    evt.preventDefault();
+
+    score++;
+    selfScore.textContent = `Счет: ${score}`;
+    evt.target.style.display = 'none';
+    catchTimeDiff = fruitCatchTime;
+    generateRdmFruit();
+  }
+
+  function generateRdmFruit() {
+    randomFruit = gamingFruits[getRandomInt(0, gamingFruits.length - 1)];
+
+    switch (randomFruit) {
+      case 'mandarin':
+        randomFruit = gamingMandarin;
+        break;
+      case 'lemon':
+        randomFruit = gamingLemon;
+        break;
+      case 'watermelon':
+        randomFruit = gamingWatermelon;
+        break;
+    }
+
+    randomFruit.style.display = 'block';
+    randomFruit.style.left = `calc(${getRandomInt(0, gameField.offsetWidth - randomFruit.offsetWidth)}px)`;
+    randomFruit.style.top = `calc(${getRandomInt(0, gameField.offsetHeight - randomFruit.offsetHeight)}px)`;
+  }
+
+  function clearGameField() {
+    clearInterval(intervalTimer);
+    gamingMandarin.removeEventListener('click', fruitListener);
+    gamingLemon.removeEventListener('click', fruitListener);
+    gamingWatermelon.removeEventListener('click', fruitListener);
+    randomFruit.style.display = 'none';
+    selfScore.classList.remove('game__self-score--show');
+    gameCatchTimer.classList.remove('game__catch-timer--show');
+    gameLvlTimer.classList.remove('game__lvl-timer--show');
+  }
+}
+
+function showWinnerModal() {
+  modalWinner.classList.add('game-options--winner-show');
+}
+
+function showLooserModal() {
+  modalLooser.classList.add('game-options--looser-show');
+}
+
+function formatDate(date) {
+
+  var dd = date.getDate();
+  if (dd < 10) dd = '0' + dd;
+
+  var mm = date.getMonth() + 1;
+  if (mm < 10) mm = '0' + mm;
+
+  var yy = date.getFullYear() % 100;
+  if (yy < 10) yy = '0' + yy;
+
+  return dd + '.' + mm + '.' + yy;
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
