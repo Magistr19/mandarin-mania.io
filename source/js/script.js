@@ -1,35 +1,44 @@
 'use strict';
 
 //Global variables
-let url = 'http://127.0.0.1:8087';
+let url = 'https://cut-chrysanthemum.glitch.me';
 let currentTableDiff = 'hard';
 let currentGameLvl;
 let gamingFruits = [];
 let gamingDiff = '';
 let score;
-let maxLvl = 5;
+let maxLvl = 10;
+
+let intervalTimer;
+let isListenerFruit = false;
+let isTimerOn = false;
+let fruitCatchTime;
+let catchTimeDiff;
+let randomFruit;
 
 //Gaming difficulties options
-let easyfruitCatchTime = [7, 6, 5, 5, 5];
-let easyLvlTime = [15, 20, 25, 30, 35];
+let easyfruitCatchTime = [7, 6, 5, 4, 3, 3, 2.9, 2.8, 2.7, 2.6];
+let easyLvlTime = [15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
-let mediumfruitCatchTime = [6, 5, 4, 4, 4];
-let mediumLvlTime = [20, 25, 30, 35, 40];
+let mediumfruitCatchTime = [6, 5, 4, 4, 3.8, 3.5, 3, 2.8, 2.5, 2];
+let mediumLvlTime = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
 
-let hardfruitCatchTime = [5, 4, 3, 3, 2];
-let hardLvlTime = [30, 40, 45, 50, 60];
+let hardfruitCatchTime = [5, 4, 3, 3, 2.3, 2.1, 2, 1.4, 1.2, 1];
+let hardLvlTime = [25, 30, 35, 40, 45, 50, 55, 60, 65, 70];
 
 // Global dom elements
 let playBtn = document.querySelector('.game__start-btn');
-let overlay = document.querySelector('.overlay');
 let registerModal = document.querySelector('.modal-register');
-let closeModal = document.querySelector('.modal-register__close-btn');
+let closeModal = document.querySelector('#closeReg');
 let registerForm = document.querySelector('.modal-register__form');
 let registerSendBtn = document.querySelector('.modal-register__send-btn');
+
+let overlay = document.querySelector('.overlay');
 
 let gameField = document.querySelector('.game__field');
 let gameOptions = document.querySelector('.game__options');
 let gameOptionsStrt = document.querySelector('.game-options__start-btn');
+
 let levelBtns = document.querySelectorAll('.levels__btn');
 
 let selfScore = document.querySelector('.game__self-score');
@@ -40,8 +49,18 @@ let gamingLemon = document.querySelector('.game__fruit--lemon');
 let gamingWatermelon = document.querySelector('.game__fruit--watermelon');
 
 let modalWinner = document.querySelector('.game__winner-modal');
-let modalLooser = document.querySelector('.game__looser-modal');
+let modalWinnerDesc = document.querySelector('.game-options__desc--winner');
+let modalWinnerScore = document.querySelector('.game-options__score--winner');
+let modalWinnerContinue = document.querySelector('.game-options__continue-btn');
+let modalWinnerEnd = document.querySelector('.game-options__end-btn--winner');
 
+let modalLooser = document.querySelector('.game__looser-modal');
+let modalLooserScore = document.querySelector('.game-options__score--looser');
+let modalLooserClose = document.querySelector('.game-options__end-btn--looser');
+
+let errorModal = document.querySelector('.modal-error');
+let errModalClose = document.querySelector('#closeError');
+let errorMessage = document.querySelector('#errorMessage');
 
 // Get records table
 fillRecords();
@@ -97,6 +116,56 @@ function toggleNav(evt) {
     mainNav.classList.toggle('main-nav--show');
 }
 
+//Overlay js
+overlay.addEventListener('click', overlayCloseModals);
+
+function overlayCloseModals(evt) {
+  evt.preventDefault();
+
+  registerModal.classList.remove('modal-register--show');
+  errorModal.classList.remove('modal-error--show');
+  overlay.classList.remove('overlay--show');
+}
+
+//Modal error
+errModalClose.addEventListener('click', closeErrModal);
+
+function closeErrModal(evt) {
+  evt.preventDefault();
+
+  errorModal.classList.remove('modal-error--show');
+  overlay.classList.remove('overlay--show');
+}
+
+//Modal winner
+modalWinnerContinue.addEventListener('click', evt => {
+  evt.preventDefault();
+
+  modalWinner.classList.remove('game-options--winner-show');
+  strtGame();
+});
+
+modalWinnerEnd.addEventListener('click', evt => {
+  evt.preventDefault();
+
+  let isSure = confirm('Вы уверены что хотите закончить игру?');
+
+  if (isSure == false) {
+    return;
+  }
+
+  modalWinner.classList.remove('game-options--winner-show');
+  showGameOptions();
+});
+
+//Modal looser
+modalLooserClose.addEventListener('click', evt => {
+  evt.preventDefault();
+
+  modalLooser.classList.remove('game-options--looser-show');
+  showGameOptions();
+});
+
 // Game field on start js
 if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localStorage.getItem('unlockedLvls')) { //Local storage check
 	showGameOptions();
@@ -105,7 +174,6 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
   setCurrentLvlBtn();
 } else {
   playBtn.addEventListener('click', toggleModal);
-  overlay.addEventListener('click', toggleModal);
   closeModal.addEventListener('click', toggleModal);
 
   function toggleModal(evt) {
@@ -125,7 +193,8 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
     let registerNick = document.querySelector("#loginNickname").value;
 
 		if (registerNick.length < 5 || registerNick.length > 12) {
-      alert('Ник от 5 до 12 символов ник должен быть');
+      hideModal();
+      showErrorModal('Ник от 5 до 12 символов должен быть');
       return;
     }
 
@@ -154,7 +223,8 @@ if (localStorage.getItem('nickName') && localStorage.getItem('userId') && localS
             openStorageLevels();
             setCurrentLvlBtn();
           } else {
-            alert('Такой пользователь уже существует!')
+            hideModal();
+            showErrorModal('Такой пользователь уже существует!');
           }
 				})
 		})
@@ -179,7 +249,7 @@ gameOptionsStrt.addEventListener('click', evt => {
   }
 
   if (gamingFruits.length === 0) {
-    alert('Укажите хотя бы один фрукт!');
+    showErrorModal('Укажите хотя бы один фрукт!');
     return;
   }
 
@@ -192,9 +262,6 @@ gameOptionsStrt.addEventListener('click', evt => {
 
 
   gameOptions.classList.remove('game-options--show');
-  selfScore.classList.add('game__self-score--show');
-  gameCatchTimer.classList.add('game__catch-timer--show');
-  gameLvlTimer.classList.add('game__lvl-timer--show');
 
   strtGame();
 });
@@ -310,6 +377,28 @@ function lvlBtnListener(evt) {
   evt.preventDefault();
 
   currentGameLvl = +evt.target.textContent;
+
+  if (isTimerOn === true) {
+    clearInterval(intervalTimer);
+    isTimerOn = false;
+  }
+
+  selfScore.classList.remove('game__self-score--show');
+  gameCatchTimer.classList.remove('game__catch-timer--show');
+  gameLvlTimer.classList.remove('game__lvl-timer--show');
+  gamingMandarin.style.display = 'none';
+  gamingLemon.style.display = 'none';
+  gamingWatermelon.style.display = 'none';
+  modalWinner.classList.remove('game-options--winner-show');
+  modalLooser.classList.remove('game-options--looser-show');
+
+  if (isListenerFruit === true) {
+    gamingMandarin.removeEventListener('click', fruitListener);
+    gamingLemon.removeEventListener('click', fruitListener);
+    gamingWatermelon.removeEventListener('click', fruitListener);
+    isListenerFruit = false;
+  }
+
   showGameOptions();
   setCurrentLvlBtn();
 }
@@ -344,13 +433,9 @@ function postRecord() {
     })
 }
 
-
 function strtGame() {
   //Gaming preparation
-  let randomFruit;
-  let fruitCatchTime;
   let lvlTime;
-  let catchTimeDiff;
 
   selfScore.classList.add('game__self-score--show');
   gameCatchTimer.classList.add('game__catch-timer--show');
@@ -374,19 +459,22 @@ function strtGame() {
   gamingMandarin.addEventListener('click', fruitListener);
   gamingLemon.addEventListener('click', fruitListener);
   gamingWatermelon.addEventListener('click', fruitListener);
+  isListenerFruit = true;
 
   selfScore.textContent = `Счет: ${score}`;
 
   //Gaming process
+  console.log(`Вы щас на ${currentGameLvl} уровне, Уровень сложности: ${gamingDiff}, Очков ${score}, Время на поимку фрукта ${fruitCatchTime}, Время на уровень ${lvlTime}`);
   generateRdmFruit();
   catchTimeDiff = fruitCatchTime;
   let startTime = new Date().getTime();
 
-  let intervalTimer = setInterval( () => {
+  isTimerOn = true;
+  intervalTimer = setInterval( () => {
     let currentTime = new Date().getTime();
     let diffTime = (currentTime - startTime)/1000;
-
     gameLvlTimer.textContent = `Продержитесь: ${(lvlTime - diffTime).toFixed(1)} сек`;
+
     catchTimeDiff -= 0.1;
     gameCatchTimer.textContent = `Время на поимку: ${(catchTimeDiff).toFixed(1)} сек`;
 
@@ -394,6 +482,11 @@ function strtGame() {
       clearGameField();
       postRecord();
       showWinnerModal();
+      if (currentGameLvl < maxLvl) {
+          currentGameLvl++;
+          openLevel(currentGameLvl);
+          setCurrentLvlBtn();
+      }
     }
 
     if (catchTimeDiff <= 0) {
@@ -405,41 +498,13 @@ function strtGame() {
 
 
   //Gaming functions
-  function fruitListener(evt) {
-    evt.preventDefault();
-
-    score++;
-    selfScore.textContent = `Счет: ${score}`;
-    evt.target.style.display = 'none';
-    catchTimeDiff = fruitCatchTime;
-    generateRdmFruit();
-  }
-
-  function generateRdmFruit() {
-    randomFruit = gamingFruits[getRandomInt(0, gamingFruits.length - 1)];
-
-    switch (randomFruit) {
-      case 'mandarin':
-        randomFruit = gamingMandarin;
-        break;
-      case 'lemon':
-        randomFruit = gamingLemon;
-        break;
-      case 'watermelon':
-        randomFruit = gamingWatermelon;
-        break;
-    }
-
-    randomFruit.style.display = 'block';
-    randomFruit.style.left = `calc(${getRandomInt(0, gameField.offsetWidth - randomFruit.offsetWidth)}px)`;
-    randomFruit.style.top = `calc(${getRandomInt(0, gameField.offsetHeight - randomFruit.offsetHeight)}px)`;
-  }
-
   function clearGameField() {
     clearInterval(intervalTimer);
+    isTimerOn = false;
     gamingMandarin.removeEventListener('click', fruitListener);
     gamingLemon.removeEventListener('click', fruitListener);
     gamingWatermelon.removeEventListener('click', fruitListener);
+    isListenerFruit = false;
     randomFruit.style.display = 'none';
     selfScore.classList.remove('game__self-score--show');
     gameCatchTimer.classList.remove('game__catch-timer--show');
@@ -449,10 +514,56 @@ function strtGame() {
 
 function showWinnerModal() {
   modalWinner.classList.add('game-options--winner-show');
+  modalWinnerScore.textContent = `Ваш счет: ${score}`;
+
+  if (currentGameLvl === maxLvl) {
+    modalWinnerDesc.textContent = 'Вы прошли всю игру!';
+    modalWinnerContinue.style.display = 'none';
+  } else {
+    modalWinnerDesc.textContent = 'Вы прошли уровень';
+    modalWinnerContinue.style.display = 'block';
+  }
 }
 
 function showLooserModal() {
   modalLooser.classList.add('game-options--looser-show');
+  modalLooserScore.textContent = `Ваш счет: ${score}`;
+}
+
+function showErrorModal(message) {
+  errorModal.classList.add('modal-error--show');
+  overlay.classList.add('overlay--show');
+  errorMessage.textContent = message;
+}
+
+function fruitListener(evt) {
+  evt.preventDefault();
+
+  score++;
+  selfScore.textContent = `Счет: ${score}`;
+  evt.target.style.display = 'none';
+  catchTimeDiff = fruitCatchTime;
+  generateRdmFruit();
+}
+
+function generateRdmFruit() {
+  randomFruit = gamingFruits[getRandomInt(0, gamingFruits.length - 1)];
+
+  switch (randomFruit) {
+    case 'mandarin':
+      randomFruit = gamingMandarin;
+      break;
+    case 'lemon':
+      randomFruit = gamingLemon;
+      break;
+    case 'watermelon':
+      randomFruit = gamingWatermelon;
+      break;
+  }
+
+  randomFruit.style.display = 'block';
+  randomFruit.style.left = `calc(${getRandomInt(0, gameField.offsetWidth - randomFruit.offsetWidth)}px)`;
+  randomFruit.style.top = `calc(${getRandomInt(0, gameField.offsetHeight - randomFruit.offsetHeight)}px)`;
 }
 
 function formatDate(date) {

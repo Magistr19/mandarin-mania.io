@@ -13,15 +13,19 @@
 </head>
 <body>
 
-  <section class="modal-register">
+  <section class="modal-register"> <!-- modal-register--show -->
     <h2 class="screen-reader">Регистрация</h2>
     <form class="modal-register__form" action="#" method="post">
 			<p class="modal-register__info">В первый раз играете?</p>
       <label class="modal-register__nick-label" for="loginNickname">Введите ваш никнейм: </label>
       <input class="custom-input" type="text" placeholder="Fruit ninja" id="loginNickname">
       <button class="custom-btn modal-register__send-btn">Начать игру</button>
-      <button class="modal-register__close-btn" type="button"><span class="screen-reader">Закрыть модальное окно</span></button>
+      <button class="modal-close-btn" id="closeReg" type="button"><span class="screen-reader">Закрыть модальное окно</span></button>
     </form>
+  </section>
+  <section class="modal-error"> <!-- modal-error--show -->
+    <p class="modal-error__desc" id="errorMessage">Укажите хотя бы один фрукт!</p>
+    <button class="modal-close-btn" id="closeError" type="button"><span class="screen-reader">Закрыть модальное окно</span></button>
   </section>
   <div class="overlay"></div>
 
@@ -101,16 +105,16 @@
           <button class="game__self-score">Счет: </button> <!-- game__self-score--show -->
           <button class="game__catch-timer">Время на поимку: </button> <!-- game__catch-timer--show -->
           <button class="game__lvl-timer">Продержитесь: </button> <!-- game__lvl-timer--show -->
-          <div class="game-options game__winner-modal"> <!-- game-options--winner-show -->
-            <p class="game-options__desc">Вы прошли уровень!</p>
-            <p class="game-options__score">Ваш счет: 0 очков</p>
-            <button class="game-options__continue-btn">Продолжить игру</button>
-            <button class="game-options__end-btn">Закончить игру</button>
+          <div class="game-options game-options--winner game__winner-modal"> <!-- game-options--winner-show -->
+            <p class="game-options__desc game-options__desc--winner">Вы прошли уровень!</p>
+            <p class="game-options__score game-options__score--winner">Ваш счет: 0 очков</p>
+            <button class="custom-btn game-options__continue-btn">Продолжить игру</button>
+            <button class="custom-btn custom-btn--grey game-options__end-btn game-options__end-btn--winner">Закончить игру</button>
           </div>
-          <div class="game-options game__looser-modal"> <!-- game-options--looser-show -->
+          <div class="game-options game-options--looser game__looser-modal"> <!-- game-options--looser-show -->
             <p class="game-options__desc">Вы проиграли!</p>
-            <p class="game-options__score">Ваш счет: 0 очков</p>
-            <button class="game-options__end-btn">Закончить игру</button>
+            <p class="game-options__score game-options__score--looser">Ваш счет: 0 очков</p>
+            <button class="custom-btn custom-btn--grey game-options__end-btn game-options__end-btn--looser">Закончить игру</button>
           </div>
         </div>
       </section>
@@ -131,6 +135,21 @@
           </li>
           <li class="levels__item">
             <button class="custom-btn-2 levels__btn" disabled>5</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 levels__btn" disabled>6</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 levels__btn" disabled>7</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 levels__btn" disabled>8</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 levels__btn" disabled>9</button>
+          </li>
+          <li class="levels__item">
+            <button class="custom-btn-2 levels__btn" disabled>10</button>
           </li>
         </ul>
       </section>

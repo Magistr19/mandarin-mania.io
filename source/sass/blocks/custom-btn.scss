@@ -34,3 +34,17 @@
 .custom-btn--hide {
   display: none;
 }
+
+.custom-btn--grey {
+  background-image: none;
+  box-shadow: none;
+  background-color: $grey;
+  color: lighten($black, 55);
+
+  &:hover,
+  &:focus {
+    background-image: none;
+    background-color: lighten($grey, 5);
+    color: lighten($black, 45)
+  }
+}

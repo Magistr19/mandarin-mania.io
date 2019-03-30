@@ -180,8 +180,37 @@
   margin-right: auto;
 }
 
+.game-options__desc {
+  @include p-reset;
+  text-align: center;
+
+  font-size: 25px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.game-options__score {
+  @include p-reset;
+
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+.game-options__continue-btn {
+  margin-bottom: 20px;
+}
+
+.game-options--looser {
+  width: 320px;
+}
+
 .game-options--looser-show {
   display: block;
+}
+
+.game-options--winner {
+  width: 320px;
 }
 
 .game-options--winner-show {

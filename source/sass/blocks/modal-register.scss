@@ -2,7 +2,7 @@
   position: fixed;
   top: calc(50% - 138px);
   left: calc(50% - 160px);
-  z-index: 1;
+  z-index: 2;
 
   width: 320px;
   height: 276px;
@@ -35,63 +35,6 @@
 
 .modal-register__send-btn {
   margin-top: 35px;
-  margin-right: auto;
   margin-left: auto;
-}
-
-.modal-register__close-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-
-  width: 30px;
-  height: 30px;
-  padding: 0;
-
-  background-color: #c91717;
-  border: none;
-  border-radius: 50%;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 3px;
-    top: calc(50% - 1px);
-
-    width: 25px;
-    height: 3px;
-
-    background-color: $white;
-    transform: rotate(45deg);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 3px;
-    top: calc(50% - 1px);
-
-    width: 25px;
-    height: 3px;
-
-    background-color: $white;
-    transform: rotate(-45deg);
-  }
-
-  &:hover,
-  &:focus {
-    outline: none;
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.6;
-  }
-}
-
-@media (min-width: $mobile-size) {
-  .modal-register__close-btn {
-    top: 10px;
-    right: -45px;
-  }
+  margin-right: auto;
 }
