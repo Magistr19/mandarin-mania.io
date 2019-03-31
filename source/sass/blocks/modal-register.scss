@@ -4,11 +4,11 @@
   left: calc(50% - 160px);
   z-index: 2;
 
+  display: none;
   width: 320px;
   height: 276px;
 
   background-color: $white;
-  display: none;
 }
 
 .modal-register--show {
@@ -23,8 +23,9 @@
 .modal-register__info {
   @include p-reset;
 
-  padding-bottom: 24px;
   padding-top: 24px;
+  padding-bottom: 24px;
+
   font-size: 24px;
 }
 
@@ -35,6 +36,6 @@
 
 .modal-register__send-btn {
   margin-top: 35px;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }

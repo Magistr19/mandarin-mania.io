@@ -1,12 +1,12 @@
 @media (min-width: $desktop-size) {
   .sections-wrapper {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: $desktop-size;
-    box-sizing: border-box;
-    padding-left: $desktop-gap;
-    padding-right: $desktop-gap;
     justify-content: space-between;
+    box-sizing: border-box;
+    width: $desktop-size;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $desktop-gap;
+    padding-left: $desktop-gap;
   }
 }

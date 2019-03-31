@@ -1,15 +1,18 @@
 .custom-input {
-  height: 44px;
-  border-radius: 9px;
-  width: 100%;
   box-sizing: border-box;
-  border: 1px solid $grey;
-  padding-left: 15px;
+  width: 100%;
+  height: 44px;
   padding-right: 15px;
+  padding-left: 15px;
+
+  border: 1px solid $grey;
+  border-radius: 9px;
+
   transition: border-color 0.3s ease-in;
 
   &::placeholder {
     color: $black;
+
     opacity: 0.5;
   }
 
@@ -18,12 +21,15 @@
   }
 
   &:focus {
+    color: $orange;
+
     border-width: 2px;
     border-color: $orange;
-    color: $orange;
+    outline: none;
 
     &::placeholder {
       color: $orange;
+
       opacity: 1;
     }
   }

@@ -1,53 +1,72 @@
 @media (max-width: $mobile-size) {
   .records {
-    padding-left: $mobile-gap;
     padding-right: $mobile-gap;
+    padding-left: $mobile-gap;
   }
 
-  .records__table, .records__table thead, .records__table tbody, .records__table th, .records__table td, .records__table tr {
-		display: block;
-	}
-
-	.records__table thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-
-	.records__table td {
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 50%;
+  .records__table,
+  .records__table thead,
+  .records__table tbody,
+  .records__table th,
+  .records__table td,
+  .records__table tr {
+    display: block;
   }
 
-	.records__table td:before {
-		position: absolute;
-		top: 2px;
-		left: 6px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
-	}
+  .records__table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .records__table td {
+    position: relative;
+
+    padding-left: 50%;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .records__table td:before {
+    position: absolute;
+    top: 2px;
+    left: 6px;
+
+    width: 45%;
+    padding-right: 10px;
+
+    white-space: nowrap;
+  }
 
 
-	.records__table td:nth-of-type(1):before { content: "№"; }
-	.records__table td:nth-of-type(2):before { content: "Ник"; }
-	.records__table td:nth-of-type(3):before { content: "Дата"; }
-  .records__table td:nth-of-type(4):before { content: "Счет"; }
+  .records__table td:nth-of-type(1):before {
+    content: "№";
+  }
+  .records__table td:nth-of-type(2):before {
+    content: "Ник";
+  }
+  .records__table td:nth-of-type(3):before {
+    content: "Дата";
+  }
+  .records__table td:nth-of-type(4):before {
+    content: "Счет";
+  }
 
   .records__table tr:nth-of-type(2n) {
     background-color: $grey;
   }
 
   .records__difficult {
-    border: none;
-    background-color: transparent;
-    padding-left: 0;
     padding-right: 0;
-    cursor: pointer;
-    text-decoration: underline;
+    padding-left: 0;
+
     font-size: 18px;
     line-height: 1.3;
+    text-decoration: underline;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -68,31 +87,38 @@
   }
 
   .records__difficult--no-table {
-    font-size: 23px;
-    padding-left: 5px;
     padding-right: 5px;
+    padding-left: 5px;
+
+    font-size: 23px;
     line-height: 1.3;
   }
 
   .records__difficult--table {
     display: none;
   }
+
+  .records__table tbody .records__me {
+    background-color: rgba(255, 253, 92, 0.5);
+  }
 }
 
 
 @media (min-width: $mobile-size + 1) {
   .records {
-    padding-left: $mobile-gap;
     padding-right: $mobile-gap;
+    padding-left: $mobile-gap;
   }
 
   .records__table {
-    border-collapse: collapse;
     width: 100%;
+
+    border-collapse: collapse;
 
     tr {
       td:nth-child(2) {
         padding-left: 5px;
+
         text-align: left;
       }
 
@@ -108,13 +134,15 @@
     th {
       font-size: 20px;
       line-height: 1.3;
-      border: 1px solid $black;
       text-align: center;
+
+      border: 1px solid $black;
     }
 
     td {
-      border: 1px solid $black;
       text-align: center;
+
+      border: 1px solid $black;
     }
   }
 
@@ -124,17 +152,19 @@
 
   .records__difficult--no-table {
     display: none;
-	}
+  }
 
-	.records__difficult {
-    border: none;
-    background-color: transparent;
-    padding-left: 0;
+  .records__difficult {
     padding-right: 0;
-    cursor: pointer;
-    text-decoration: underline;
+    padding-left: 0;
+
     font-size: 18px;
     line-height: 1.3;
+    text-decoration: underline;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -155,7 +185,10 @@
   }
 
   .records__table thead tr {
-      background-color: $orange;
+    height: 35px;
+
+    background-color: lighten($blue, 20);
+    color: $white;
   }
 
   .records__table tr:nth-of-type(2n) {
@@ -163,14 +196,14 @@
   }
 
   .records__table tbody .records__me {
-    background-color: $yellow;
+    background-color: rgba(255, 253, 92, 0.5);
   }
 }
 
 @media (min-width: $tablet-size) {
-	.records {
-		padding-left: $tablet-gap;
-		padding-right: $tablet-gap;
+  .records {
+    padding-right: $tablet-gap;
+    padding-left: $tablet-gap;
   }
 
   .records__number {
@@ -190,9 +223,9 @@
   .records {
     box-sizing: border-box;
     width: $desktop-size;
-    padding-left: $desktop-gap;
-    padding-right: $desktop-gap;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
+    padding-right: $desktop-gap;
+    padding-left: $desktop-gap;
   }
 }

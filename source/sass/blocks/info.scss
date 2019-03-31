@@ -1,6 +1,7 @@
 .info {
   padding-right: $mobile-gap;
   padding-left: $mobile-gap;
+  padding-bottom: 30px;
 }
 
 .info__title {
@@ -18,9 +19,9 @@
 
   display: flex;
   flex-wrap: wrap;
-  margin-left: -50px;
-  margin-top: -15px;
   max-width: 700px;
+  margin-top: -15px;
+  margin-left: -50px;
 }
 
 .info__item-fruit {
@@ -43,6 +44,7 @@
 
 .info__list-difficulties {
   @include list-reset;
+
   margin-top: -10px;
 }
 
@@ -68,6 +70,22 @@
   }
 }
 
+.info__link {
+  color: $blue;
+  text-decoration: underline;
+  transition: opacity 0.3s ease-in;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
 @media (min-width: $tablet-size) {
   .info {
     padding-right: $tablet-gap;
@@ -75,8 +93,8 @@
   }
 
   .info__list-fruits {
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 }
 

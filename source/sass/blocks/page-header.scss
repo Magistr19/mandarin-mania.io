@@ -87,11 +87,12 @@
 
 @media (min-width: $tablet-size) {
   .page-header {
-    background-color: #98cb31;
     padding-top: 10px;
+    padding-right: $tablet-gap;
     padding-bottom: 10px;
     padding-left: $tablet-gap;
-    padding-right: $tablet-gap;
+
+    background-color: #98cb31;
   }
 
   .page-header__wrapper {
@@ -114,17 +115,16 @@
 
 @media (min-width: $desktop-size) {
   .page-header {
-    padding-left: 0;
     padding-right: 0;
+    padding-left: 0;
   }
 
   .page-header__wrapper {
-    width: $desktop-size;
-    margin-left: auto;
-    margin-right: auto;
     box-sizing: border-box;
-    padding-left: $desktop-gap;
+    width: $desktop-size;
+    margin-right: auto;
+    margin-left: auto;
     padding-right: $desktop-gap;
+    padding-left: $desktop-gap;
   }
 }
-

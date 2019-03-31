@@ -4,32 +4,56 @@
   align-items: center;
   width: 60px;
   height: 60px;
-  background-color: transparent;
-  border: 2px solid $grey;
+
   font-size: 25px;
   line-height: 1.3;
   color: darken($grey, 35);
+
+  background-color: transparent;
+  border: 2px solid $grey;
   border-radius: 6px;
+
   transition: border-color 0.3s ease-in, color 0.3s ease-in;
 }
 
 .custom-btn-2:not(:disabled) {
   &:hover,
   &:focus {
-    outline: none;
-    border-color: $orange;
     color: $orange;
+
+    border-color: $orange;
+    outline: none;
+  }
+
+  &:active {
+    color: lighten($orange, 20);
+    border-color: lighten($orange, 20);
   }
 }
 
 .custom-btn-2:disabled {
-  background-image: url('../img/lock.png');
+  text-indent: -9999px;
+
+  background-image: url("../img/lock.png");
   background-repeat: no-repeat;
   background-position: center;
-  text-indent: -9999px;
 }
 
 .custom-btn-2--current {
-  border-color: $blue;
   color: $blue;
+
+  border-color: $blue;
+}
+
+.custom-btn-2--current:not(:disabled) {
+  &:hover,
+  &:focus {
+    color: lighten($blue, 30);
+    border-color: lighten($blue, 30);
+  }
+
+  &:active {
+    color: lighten($blue, 40);
+    border-color: lighten($blue, 40);
+  }
 }

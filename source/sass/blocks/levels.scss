@@ -1,6 +1,6 @@
 .levels {
-  padding-left: $mobile-gap;
   padding-right: $mobile-gap;
+  padding-left: $mobile-gap;
 }
 
 .levels__title {
@@ -10,6 +10,7 @@
 
 .levels__list {
   @include list-reset;
+
   display: flex;
   flex-wrap: wrap;
   margin-left: -20px;
@@ -22,16 +23,16 @@
 
 @media (min-width: $tablet-size) {
   .levels {
-    padding-left: $tablet-gap;
     padding-right: $tablet-gap;
+    padding-left: $tablet-gap;
   }
 }
 
 @media (min-width: $desktop-size) {
   .levels {
     width: 380px;
-    padding-left: 0;
-    padding-right: 0;
     margin-top: -15px;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
