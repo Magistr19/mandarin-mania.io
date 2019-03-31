@@ -23,6 +23,7 @@
 
   .page-footer__address-link {
     display: inline-block;
+
     line-height: 0;
   }
 
@@ -97,30 +98,32 @@
   }
 
   .page-footer__address {
+    margin-top: -17px;
+    margin-right: 7%;
+
     font-size: 20px;
     color: $white;
-    margin-right: 7%;
   }
 
   .page-footer__contacts {
     width: 160px;
-    margin-top: 3px;
+    margin-top: 5px;
+    margin-right: 8%;
+    margin-left: auto;
 
     font-size: 20px;
     line-height: 1.3;
     text-align: center;
     color: $white;
-    margin-left: auto;
-    margin-right: 8%;
   }
 
   .page-footer__copyright {
+    width: 200px;
     margin-top: 1px;
+    margin-left: auto;
 
     font-size: 20px;
     line-height: 1.3;
-    width: 200px;
-    margin-left: auto;
     color: $white;
   }
 
@@ -163,13 +166,13 @@
 
 @media (min-width: $desktop-size) {
   .page-footer__container {
-    width: $desktop-size;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: $desktop-gap;
-    padding-right: $desktop-gap;
     justify-content: space-between;
+    box-sizing: border-box;
+    width: $desktop-size;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $desktop-gap;
+    padding-left: $desktop-gap;
   }
 
   .page-footer__address {
@@ -177,10 +180,10 @@
   }
 
   .page-footer__contacts {
-    margin-left: 0;
-    margin-right: 0;
     width: auto;
     margin-top: 27px;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   .page-footer__copyright {
