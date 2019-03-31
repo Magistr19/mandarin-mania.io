@@ -11,23 +11,26 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "browser-sync": "^2.26.3",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-plumber": "^1.2.0",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-posthtml": "^3.0.4",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-svgstore": "^7.0.0",
+    "gulp-svgstore": "^7.0.1",
     "gulp-uglifyes": "^0.2.1",
-    "gulp-webp": "^3.0.0",
-    "posthtml-include": "^1.2.0",
-    "run-sequence": "^2.2.1"
-  }
+    "gulp-webp": "^4.0.1",
+    "posthtml-include": "^1.2.0"
+  },
+  "dependencies": {}
 }
